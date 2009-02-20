@@ -1,0 +1,12 @@
+<?php
+echo '<?xml version="1.0" encoding="utf-8"?>
+<collection>';
+foreach($this->list as $id=>$filename)
+{
+	echo '
+	<fileitem src="'.$this->baseUrl.'public/files/uploaded/'.$filename.'" filesize="'.$this->filesize(filesize(ROOT_DIR.'/public/files/uploaded/'.$filename)).'" />';
+	
+}
+echo '
+</collection>';
+?>

@@ -1,0 +1,183 @@
+* {padding: 0px; margin: 0px;}
+a {outline: none; text-decoration: none;}
+a:hover {text-decoration: underline;}
+img {border: 0px; vertical-align: top;}
+pre {font: 11px/15px "Courier New", Courier, monospace, fixed; background: #f9f9f9; border-top: 1px dotted #ccc; border-bottom: 1px dotted #ccc;}
+
+body {
+	font: 12px/15px "Lucida Grande", "SegoeUI", Tahoma, Verdana, Helvetica, sans-serif;
+	background: #fff url('../images/layout/bg.gif') repeat-x;
+	text-align: center;
+	color: #666;
+}
+
+td, p {font: 12px/15px "Lucida Grande", Tahoma, Verdana, Helvetica, sans-serif;}
+
+#wrapper{width: 760px; padding: 0px; text-align: left; margin: auto; background: #fff; position: relative;}
+#items {padding: 10px;}
+
+#wrapper h1 {
+	font: bold 24px/38px "Lucida Grande", "SegoeUI", Tahoma, Arial, Helvetica, sans-serif;
+	color: #aaa;
+	margin: 0px;
+	height: 60px;
+	background: #222;
+	padding: 20px 10px 10px 10px;
+}
+
+
+#wrapper h1 .icon {
+	float: left;
+	display: block;
+	width: 64px;
+	height: 64px;
+	margin-right: 10px;
+}
+
+#wrapper h1 .describe {
+	font: 14px/17px "Lucida Grande", "SegoeUI", Tahoma, Arial, Helvetica, sans-serif;
+	width: auto;
+	height: auto;
+	color: #eee;
+	display: block;
+}
+
+#items h1 {font: bold 14px/18px "Lucida Grande", "SegoeUI", Tahoma, Verdama, Helvetica, sans-serif; background: transparent; width: auto; height: auto; color: #1C989D;
+ padding: 0px; margin: 0px;}
+#items h2 {font: bold 12px/15px "Lucida Grande", "SegoeUI", Tahoma, Verdama, Helvetica, sans-serif; background: transparent; width: auto; height: auto; color: #000;
+ padding: 0px; margin: 0px;}
+
+#items ul, #items ol {padding-left: 15px;}
+#items ul {list-style-type: square;}
+
+.item0, .item1{padding: 5px 10px;}
+.item0{background: #fafafa;}
+
+.buttons{float: right; padding: 12px 0px;}
+.buttons img{vertical-align: middle;}
+.buttons a{color: #333;}
+.buttons a:hover{color: #92b74e; text-decoration: none;}
+
+.activity{float: left; padding: 12px 12px 12px 0px; }
+p {margin: 10px 0px; text-align: justify;}
+p.description {margin: 0px; font: 12px/15px "Lucida Grande", "SegoeUI", Tahoma, Verdana, Helvetica, sans-serif; text-align: justify; color: #444;}
+
+/* Navigation tabs */
+#tabs {
+	background: #222;
+	height: 31px;
+	padding: 5px 10px 0px 10px;
+	max-height: 36px;
+	text-align: right;
+	list-style: none;
+	width: 760px; max-width: 740px;
+}
+
+*html #tabs{height: 31px; padding-top: 1px;}
+
+#tabs img{vertical-align: middle; margin-right: 3px;}
+#tabs li{display: inline; padding: 0px;}
+#tabs a{display: inline-block; background: url('../images/layout/tableft.gif') no-repeat left top; margin: 0px; padding: 0px 0px 0px 4px; text-decoration: none; outline: none;}
+#tabs a span{display: inline-block; background: url('../images/layout/tabright.gif') no-repeat right top; padding: 5px 15px 4px 6px; color: #000;}
+/* Commented Backslash Hack hides rule from IE5-Mac \*/
+#tabs a span{float:none;}
+
+/* End IE5-Mac hack */
+#tabs a:hover span{color: #92b74e;}
+#tabs a:hover{background-position: 0% -42px;}
+#tabs a:hover span{background-position: 100% -42px;}
+
+
+#notice p {border: 1px solid #f2da91; border-top: 0px;
+	background: #ffe9b7;
+	padding: 10px;
+	margin: 0px 10px;
+	color: #444;
+}
+
+#notice p img { vertical-align: middle; margin-right: 4px;}
+
+
+.apple_pagination { border-top: 1px solid #1c989d; text-align: center; padding: 8px; margin: 0px 10px;}
+  .apple_pagination a, .apple_pagination span { padding: .2em .3em; color: #444;}
+  .apple_pagination span.disabled {color: #888; }
+  .apple_pagination span.current {font-weight: bold; }
+  .apple_pagination a {text-decoration: none; color: #444; }
+    .apple_pagination a:hover, .apple_pagination a:focus {text-decoration: underline; }
+
+.flickr_pagination { text-align: center; padding: .3em; }
+  .flickr_pagination a, .flickr_pagination span { padding: .2em .5em; }
+  .flickr_pagination span.disabled { color: #AAA; }
+  .flickr_pagination span.current { font-weight: bold; color: #FF0084; }
+  .flickr_pagination a { border: 1px solid #DDDDDD; color: #0063DC; text-decoration: none; }
+    .flickr_pagination a:hover, .flickr_pagination a:focus { border-color: #003366; background: #0063DC; color: white; }
+  .flickr_pagination .page_info { color: #aaa; padding-top: .8em; }
+  .flickr_pagination .prev_page, .flickr_pagination .next_page { border-width: 2px; }
+  .flickr_pagination .prev_page { margin-right: 1em; }
+  .flickr_pagination .next_page { margin-left: 1em; }
+
+
+.isLogged {
+	position: absolute; top: 20px; right: 10px; width: 170px; text-align: right; color: #ddd; margin: 0px;
+}
+
+.isLogged a{color: #fff;}
+
+.module_describe{margin: 0px 10px; padding: 10px; background: #e7f1f1; border: 1px solid #1c989d; border-top: 0px;}
+.module_describe img{float: left; margin-right: 5px; padding: 5px;}
+
+#filelist{float: right; width: 411px;}
+  #filelist .header, .left_column .header, #filelist .status, .left_column .status{background: #f9f9f9; color: #282828; padding: 5px; border-top: 1px solid #eee; border-bottom: 1px solid #eee;}
+  .left_column .status{height: 74px; max-height: 64px;}
+  .header .title{display: block; float: left; width: 301px;}
+  .header .controls{display: block; float: left; width: 100px; text-align: right;}
+  #filelist .contents{background: #fff; padding: 0px; height: 336px;}
+  .list .fileitem {float: left; width: 392px; margin: 0 1px 1px 0; padding: 4px 4px; background: #fff; color: #222; position: relative;}
+  .list .fileitem .icon {float: left; display: block; margin-right: 3px; width: 16px; display: none;}
+  .list .fileitem .name{float: left; display: block; width: 230px; padding-left: 10px; max-width: 220px;}
+  .list .fileitem .name a img {display: none;  position: absolute; top: 6px; right: 50px;}
+  .list .fileitem .size {float: left; width: 58px; text-align: right;}
+  .icons .fileitem {float: left; width: 99px; padding: 0px 5px 5px 5px; max-width: 88px; margin: 0 1px 1px 0; background: #fff; text-align: center; position: relative; height: 80px; max-height: 78px;}
+  .icons .fileitem .icon {display: block; margin: 16px auto;}
+  .icons .fileitem .name{float: left; display: block; width: 89px; overflow: hidden;}
+  .icons .fileitem .name a img{display: none; position: absolute; top: 5px; right: 5px;}
+  .icons .fileitem .size{display: none;}
+  .fileitem a{color: inherit;}
+  .fileitem .cb {display: none;}
+
+.status .icon{float: left; display: block; margin: 16px; width: 32px;}
+.status .content{float: left; display: block; width: 200px; margin: 16px 0px;}
+
+.left_column{float: left; width: 329px; height: 266px; position: relative;}
+.left_column #tip{position: absolute; left: 70px; top: 53px; background: #111; width: 252px; color: #ddd; display: none; opacity: 0.95; -moz-opacity: 0.95;}
+.left_column #tip div{padding: 20px 10px 10px 10px; text-align: center;}
+.left_column #tip .close{position: absolute; top: 5px; right: 5px; background: url('../images/layout/icons/popup_close.png') no-repeat; display: block; width: 11px; height: 11px; text-indent: -1000px; overflow: hidden;}
+.mailform .form_row{width: 318px; color: #0b0c0c;  padding: 0px; border-right: 1px solid #ddd; padding: 5px 5px 0px 5px;}
+.form_row .label{float: left; width: 65px; padding: 0px; margin: 0px;}
+.form_row .field{float: left; width: 219px; margin: 0px;}
+
+.mailform {height: 336px; overflow: hidden; border-right: 1px solid #ddd;}
+.mailform .field input, .mailform .field textarea{width: 254px; border: 1px solid #ddd; background: url('../images/layout/formbg.jpg') repeat-x; font: 12px/15px "Lucida Grande", "SegoeUI", Tahoma, Verdana, Helvetica, sans-serif; color: #999; max-width: 252px;}
+.mailform .field textarea{height: 269px;}
+.mailform .submit{ text-align: right; padding: 5px 2px 5px 0px;}
+.mailform .submit input{border: none;}
+
+.loginform {margin: 20px 0 0 10px; width: 400px; max-width: 390px; float: left; border-right: 1px solid #ddd;}
+.loginform .field input {border: 1px solid #ccc; width: 228px; vertical-align: middle; background: url('../images/layout/formbg.jpg') repeat-x; font-size: 12px;}
+.loginform .label {float: left; width: 140px;}
+.loginform .field {float: left; width: 230px; }
+.loginform .form_row, .loginform .submit{padding: 2px 10px;}
+.loginform .submit{text-align: right;}
+.direction {float: left; width: 320px; margin: 20px 0 0 10px; display: inline; color: #888;}
+
+#browser{position: relative;}
+#browser #upload_form{position: absolute; top: 27px; left: 100px; width: 560px; background: #f9f9f9; color: #222; z-index: 100; max-width: 550px; opacity: 0.95; -moz-opacity: 0.95; padding: 0px; margin: 0px; border: 1px solid #eee; border-top: 0px;}
+#browser #upload_form div{padding: 10px 5px; }
+#upload_form div .form_row{width: 300px; padding: 0px !important;}
+#upload_form div .form_row .label{float: left; width: 100px; padding: 2px 0px !important;}
+#upload_form div .form_row .field{float: left; width: 200px; height: 22px; padding: 0px !important;}
+#upload_form div .form_row .field input{border: none; height: 22px; background: #f9f9f9;}
+#upload_form div .form_row .field div{padding: 0px !important;}
+#upload_form .close {position: absolute; top: 5px; right: 5px; background: url('../images/layout/icons/popup_close.png') no-repeat; display: block; width: 11px; height: 11px; text-indent: -1000px; overflow: hidden;}
+#upload_form #loading {position: absolute; top: 15px; right: 120px;}
+#upload_form .submit {padding: 0px !important; width: 302px; text-align: right;}

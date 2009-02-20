@@ -1,0 +1,255 @@
+<?php 
+$this->headScript()
+->prependFile($this->baseURL.'public/javascripts/jquery.mousewheel.js')
+->prependFile($this->baseURL.'public/javascripts/jquery.em.js')
+->appendFile($this->baseURL.'public/javascripts/jScrollPane.js')
+->prependFile($this->baseURL.'public/javascripts/jquery.filestyle.js')
+->prependFile($this->baseURL.'public/javascripts/ajaxfileupload.js')
+->captureStart(); ?>
+var statusBarText = '';
+var selected = 0;
+$(document).ready(function()
+{
+	var list=true;
+	var shown=false;
+	statusBarText = $("#filelist .status").html();
+
+	$('a[rel*=facebox]').facebox();
+	$('.scroll-pane').jScrollPane();
+	$("input[type=file]").filestyle({ image: '<?php echo $this->baseUrl ?>/public/images/layout/buttons/choose-file.gif', imageheight : 22, imagewidth : 82, width : 118 });
+
+	
+
+	$(".header .add").click(function()
+	{
+		$('#upload_form').slideToggle();
+	});
+
+	$(".header .destroy").click(function()
+	{
+		if (!selected)
+		{
+			$.facebox('Please select file(s) first');
+		}
+		else
+		{
+			if (confirm('This will destroy ' + selected + ' file(s). Continue?'))
+			{
+				$.ajax({type: "POST", url: "<?php echo $this->url(array('controller'=>'index', 'action'=>'destroy'),'default') ?>", dataType: 'xml', data: $("#fileBrowser").serialize(), complete: function(data, code){ $(".header .reload").trigger('click');}});
+			}
+		}
+	});
+
+	$("#upload_form .close").click(function()
+	{
+		$('#upload_form').slideUp();
+	});
+
+
+	$(".header .reload").click(function()
+	{
+		$.ajax({type: "POST", url: "<?php echo $this->url(array('controller'=>'index', 'action'=>'list'),'default') ?>", dataType: 'html', data: $("#fileBrowser").serialize(), complete: function(data, code){ $("#contents").html(data.responseText); attachEvents();}});
+	});
+
+	$(".header .list").click(function()
+	{
+		list = true;
+		$("#filelist").removeClass('icons');
+		$("#filelist").addClass('list');
+		$(".fileitem .icon img").attr('src','<?php echo $this->baseUrl ?>/public/images/layout/icons/html_small.png');
+		$('.scroll-pane').jScrollPane();
+	});
+	$(".header .icons").click(function()
+	{
+		list = false;
+		$("#filelist").removeClass('list');
+		$("#filelist").addClass('icons');
+		$(".fileitem .icon img").attr('src','<?php echo $this->baseUrl ?>/public/images/layout/icons/html.png');
+		$('.scroll-pane').jScrollPane();
+	});
+
+	function ajaxFileUpload()
+	{
+		$("#loading")
+		.ajaxStart(function(){
+			$(this).show();
+		})
+		.ajaxComplete(function(){
+			$(this).hide();
+		});
+
+		$.ajaxFileUpload({
+			url:'<?php echo $this->url(array('controller'=>'index', 'action'=>'upload'),'default') ?>',
+			secureuri: false,
+			fileElementId: 'uploader',
+			dataType: 'json',
+			success: function (data, status)
+			{
+				if(typeof(data.error) != 'undefined')
+				{
+					if(data.error != '')
+					{
+						$.facebox(data.error);
+					}
+					else
+					{
+						$('#upload_form').hide();
+						$(".header .reload").trigger('click');
+					}
+				}
+			},
+			error: function (data, status, e)
+			{
+				$.facebox(e);
+			}
+		});
+		return false;
+	}
+
+	$('#uploadSubmit').click(function(e){
+		e.preventDefault();
+		return new ajaxFileUpload();
+	});
+
+	$('#uploadForm').submit(function(e){
+		e.preventDefault();
+	});
+
+	$('#mailSubmit').click(function(e){
+		e.preventDefault();
+		if (selected > 0)
+		{
+			$.ajax({type: "POST", url: "<?php echo $this->url(array('controller'=>'index', 'action'=>'send'),'default') ?>", dataType: 'json', data: $("#mailForm").serialize() + '&' + $("#fileBrowser").serialize(), complete: function(data, code){ var json = eval(data.getResponseHeader("X-JSON")); $.facebox(json.message); }});
+		}
+		else
+		{
+			$.facebox('Please select file(s) first');
+		}
+	});
+	$('#recipients').focus(function(){
+		if ((!$(this).val()) && (!shown))
+		{
+			$("#tip").slideDown('slow');
+			shown = true;
+		}
+	})
+
+	$('#tip .close').click(function(){
+		$("#tip").slideUp('slow');
+		$("#recipients").trigger("focus");
+	});
+
+	attachEvents();
+});
+
+function attachEvents()
+{
+	$('a[rel*=facebox]').facebox();
+	$('.fileitem')
+	.mouseover(function(e){
+		$(this).css({background: '#83a5c7', color: '#ffffff'});
+		$(this).find('.name a img').show();
+	})
+	.mouseout(function(){
+		$(this).css({background: '#ffffff', color: '#222222'});
+		$(this).find('.name a img').hide();
+		$(this).find('.fileinfo').animate({opacity: 0}, 10);
+		$(this).find('.fileinfo').remove();
+		checkSelected();
+	})
+	.click(function(){
+		var linkid = "input[@name="+$(this).find(".name a").attr('id').replace('link','cb')+"]";
+		$(linkid).each(function(){
+		if (this.checked == false)
+		{
+			this.checked = true;
+			checkSelected();
+		}
+		else
+		{
+			this.checked = false;
+			checkSelected();
+		}
+		});
+	});
+	checkSelected();
+}
+function checkSelected()
+{
+	var counter=0;
+	var fileCount = 0;
+	var statusText = '';
+	$('.fileitem').each(function(){
+	$(this).find('input[type=checkbox]').each(function(){
+		fileCount++;
+		if (this.checked)
+		{
+			counter++;
+			$(this).parent().css({background: '#83a5c7', color: '#ffffff'});
+			statusText = '<span class="icon"><img src="<?php echo $this->baseUrl ?>/public/images/layout/icons/html.png" alt="" /></span><span class="content"><strong>'+$(this).parent().find(".name").text()+'</strong><br />'+$(this).parent().find(".size").text()+'</span><br style="clear: both" />';
+		}
+		});
+	});
+	if (counter == 0)
+	{
+		$("#filelist .status").html('<span class="icon"><img src="<?php echo $this->baseUrl ?>/public/images/layout/icons/folder.png" alt="" /></span><span class="content"><strong>Uploads</strong><br /> '+fileCount+' files</span><br style="clear: both" />');
+	}
+	else if (counter == 1)
+	{
+		$("#filelist .status").html(statusText);
+	}
+	else if (counter > 1)
+	{
+		$("#filelist .status").html('<span class="icon"><img src="<?php echo $this->baseUrl ?>/public/images/layout/icons/multiple.png" alt="" /></span><span class="content"><strong>Multiple selection</strong><br />'+counter+' files</span><br style="clear: both" />');
+	}
+	selected = counter;
+}
+<?php $this->headScript()->captureEnd(); ?>
+<h1><span class="icon"><?php echo $this->img('/public/images/layout/icons/mail.png', array('alt' => 'Mail')); ?></span><?php echo $this->escape('Athlon Mailer');?><span class="describe"><?php echo $this->description; ?></span></h1>
+<ul id="tabs">
+	<!--<li><a href="<?php echo $this->url(array('controller'=>'index', 'action'=>'add'),'default'); ?>"><span><?php echo $this->img('/public/images/layout/actions/add.png', array('alt' => '[A]')); ?>Add new mail template</span></a></li>-->
+</ul>
+<div id="items">
+	<div id="browser">
+	<div id="upload_form" style="display: none;"><?php echo $this->uploadform; ?><a href="#" class="close">Close</a>
+	<?php echo $this->img('/public/images/layout/loading.gif', array('alt' => 'loading', 'id'=>'loading' ,'style'=>'display: none;')); ?></div>
+	<div class="left_column">
+		<div id="tip"><div>Enter recipient's addresses one at a line<br /><a href="#" class="close">Close</a></div></div>
+		<div class="header"><strong>Organizer</strong></div>
+		<?php echo $this->mailform ?>
+		<div class="status">&#160;</div>
+	</div>
+	<div id="filelist" class="list">
+		<div class="header">
+			<span class="title">&#160;</span>
+			<span class="controls"><a href="#" class="reload"><?php echo $this->img('/public/images/layout/controls/reload.png',array('alt'=>'add file', 'title'=>'reload file list')); ?></a>&#160;<a href="#" class="add"><?php echo $this->img('/public/images/layout/controls/add.png',array('alt'=>'add file', 'title'=>'upload new file')); ?></a>&#160;<a href="#" class="destroy"><?php echo $this->img('/public/images/layout/controls/destroy.png',array('alt'=>'delete file', 'title'=>'delete selected files')); ?></a>&#160;&#160;&#160;<a href="#" class="icons"><?php echo $this->img('/public/images/layout/icons/list_icons.gif',array('alt'=>'icons view')); ?></a>
+			<a href="#" class="list"><?php echo $this->img('/public/images/layout/icons/list_list.gif',array('alt'=>'list view')); ?></a></span>
+			
+			<br style="clear: both" />
+		</div>
+		<form id="fileBrowser" method="post" action="<?php echo $this->url(array('controller'=>'index', 'action'=>'destroy'),'default'); ?>">
+			<div id="contents" class="contents scroll-pane">
+			<?php
+			foreach($this->list as $id=>$filename)
+			{
+				echo '
+				<div class="fileitem">
+					<input type="checkbox" class="cb" name="cb'.($id+1).'" id="cb'.($id+1).'" value="'.$filename.'"/>
+					<span class="icon">'.$this->img('/public/images/layout/icons/html_small.png',array('alt'=>$filename)).'</span>
+					<span class="name"><a href="'.$this->baseUrl.'public/files/uploaded/'.$filename.'" rel="facebox" id="link'.($id+1).'">'.$this->img('/public/images/layout/icons/view.gif',array('alt'=>'Preview')).'</a>'.$filename.'</span>
+					<span class="size">'.$this->filesize(filesize(ROOT_DIR.'/public/files/uploaded/'.$filename)).'</span>
+					<br style="clear: both" />
+				</div>';
+			}
+			?>
+			<br style="clear: both" />
+			</div>
+		</form>
+		<div class="status">
+			<span class="icon"><img src="<?php echo $this->baseUrl ?>/public/images/layout/icons/folder.png" alt="" /></span><span class="content"><strong>Uploads</strong><br /> <?php echo sizeof($this->list); ?> files</span><br style="clear: both" />
+		</div>
+	</div>
+	<br style="clear: both" />
+	</div>
+	
+</div>

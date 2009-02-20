@@ -1,0 +1,14 @@
+<?php
+foreach($this->list as $id=>$filename)
+{
+	echo '
+	<div class="fileitem">
+		<input type="checkbox" class="cb" name="cb'.($id+1).'" id="cb'.($id+1).'" value="'.$filename.'"/>
+		<span class="icon">'.$this->img('/public/images/layout/icons/html_small.png',array('alt'=>$filename)).'</span>
+		<span class="name"><a href="'.$this->baseUrl.'public/files/uploaded/'.$filename.'" rel="facebox" id="link'.($id+1).'">'.$this->img('/public/images/layout/icons/view.gif',array('alt'=>'Preview')).'</a>'.$filename.'</span>
+		<span class="size">'.$this->filesize(filesize(ROOT_DIR.'/public/files/uploaded/'.$filename)).'</span>
+		<br style="clear: both" />
+	</div>';
+}
+?>
+<br style="clear: both" />

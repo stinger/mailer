@@ -1,0 +1,9 @@
+<?php
+header( 'X-JSON: ({status: "'.$this->status.'", message: "'.$this->message.'"})' ); 
+echo '<info>
+<status>'.$this->status.'</status>
+<message>'.$this->message.'</message>
+</info>';
+?>
+
+

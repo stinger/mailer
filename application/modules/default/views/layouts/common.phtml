@@ -1,0 +1,36 @@
+<?php echo '<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+';
+?>
+<head>
+  <?php echo $this->headTitle(); ?>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="shortcut icon" href="<?php echo $this->baseUrl; ?>/images/layout/favicon.ico" type="image/x-icon" />
+  <link rel="icon" href="<?php echo $this->baseUrl; ?>/images/layout/favicon.ico" type="image/x-icon" /> 
+  <style type="text/css">
+  /* <![CDATA[ */
+  @import url('<?php echo $this->baseUrl; ?>/public/stylesheets/application.css');
+  @import url('<?php echo $this->baseUrl; ?>/public/stylesheets/scaffold.css');
+  @import url('<?php echo $this->baseUrl; ?>/public/stylesheets/facebox.css');
+  @import url('<?php echo $this->baseUrl; ?>/public/stylesheets/jScrollPane.css');
+  /* ]]> */
+  </style>
+  <script type="text/javascript" src="<?php echo $this->baseUrl; ?>public/javascripts/jquery.js"></script>
+  <script type="text/javascript" src="<?php echo $this->baseUrl; ?>public/javascripts/facebox.js"></script>
+  <script type="text/javascript" src="<?php echo $this->baseUrl; ?>public/javascripts/jquery.pngFix.js"></script>
+  <script type="text/javascript">
+	$(document).ready(function()
+	{
+		$(document).pngFix(); 
+	});
+  </script>
+  <?php echo $this->headScript() ?>
+</head>
+<body>
+	<div id="wrapper">
+		<div class="isLogged"><?php echo $this->loggedInUser(); ?></div>
+		<?php echo $this->layout()->content ?>
+	</div>
+</body>
+</html> 

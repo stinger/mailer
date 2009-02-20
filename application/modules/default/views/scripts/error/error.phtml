@@ -1,0 +1,15 @@
+<h1><span class="icon"><?php echo $this->img('/public/images/layout/icons/error.png', array('alt' => 'Post')); ?></span><?php echo $this->escape($this->title);?><span class="describe"><?php echo $this->escape($this->description);?></span></h1>
+<ul id="tabs">
+	<li></li>
+</ul>
+
+<h2>Ouch!</h2>
+<p>An error occured during processing of the requested action.</p>
+<?php 
+if (isset($this->error)){
+?>
+	<pre><?php echo $this->error; ?></pre>
+<?php 
+}
+?>
+<p>Please go <a href="javascript:history.back(-1)">back</a> and try again.</p>

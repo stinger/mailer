@@ -1,0 +1,223 @@
+/* --- Yahoo UI reset --- */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { 
+	margin:0;
+	padding:0;
+}
+table {
+	border-collapse:collapse;
+	border-spacing:0;
+}
+a {
+	outline: none;
+	color: #1c989d;
+}
+img {
+	border:0;
+}
+caption,th {
+	text-align:left;
+}
+h1,h2,h3,h4,h5,h6 {
+	font-size: 100%;
+	font-weight:normal;
+}
+q:before,q:after {
+	content:'';
+}
+abbr,acronym {
+	border:0;
+}
+small, big {
+	font-size: 1em;
+}
+body {
+	text-align: center;
+	background: url('../images/layout/bg.gif');
+}
+p {
+	text-align: justify;
+}
+
+#header {
+	height: 90px;
+	border: 0px;
+	background: url('../images/layout/stripe.png');
+	position: relative;
+}
+
+#footer {
+	border-top: 1px solid #c7cb16;
+	margin: 0px 10px;
+	padding: 0px 0px 1px 0px;
+	background: url('../images/layout/PoweredBy_ZF_4LightBG.png') 100% 5px no-repeat;
+}
+
+
+#wrapper {
+	width: 760px;
+	background: #fff;
+	text-align: left;
+	padding: 0;
+	max-width: 760px;
+	margin: auto;
+}
+
+#maincontent {
+	padding: 10px;
+}
+
+fieldset {
+	border: 0px;
+	padding: 0px 10px;
+	color: #888;
+}
+
+#header fieldset {
+	float: right; width: 335px;
+	color: #ddd;
+}
+
+#header h1 {
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+}
+
+#header .logo a {
+	display: block;
+	position: absolute;
+	top: 19px;
+	left: 10px;
+	text-indent: -1000000px;
+	width: 380px;
+	height: 30px;
+/* 	border-bottom: 3px solid #77bf19; */
+	margin: 10px 0 30px 0;
+}
+
+legend {
+	padding: 0px;
+	color: #666;
+	font-weight: bold;
+}
+
+#header label {
+	width: 120px;
+	margin-right: 5px;
+	display: block; float: left;
+	color: #ddd;
+}
+
+.list {
+	list-style-type: square;
+	padding-left: 15px;
+	list-style-position: outside;
+	color: #888;
+	margin: 10px;
+}
+
+.formcontent input {
+	border: 1px solid #96a526;
+	background: #191919;
+	color: #ddd;
+	padding: 0px 2px;
+	width: 200px;
+	font: 11px/15px Tahoma, Verdana, helvetica, sans-serif;
+}
+.formcontent a {
+	color: #96a526;
+}
+
+ul.gallery {
+	list-style: none;
+	padding-left: 6px;
+}
+
+.gallery li {
+	display: inline-block;
+	float: left;
+	margin: 5px 8px;
+	border: 1px solid #ccc;
+	width: 102px;
+	padding: 1px;
+	max-width: 100px;
+}
+.gallery li img {
+	vertical-align: top;
+}
+
+/* Navigation tabs */
+#tabs {
+	position: absolute;
+	left: 0px; bottom: -1px;
+}
+
+#tabs ul {
+	float: right;
+	margin: 0px;
+	padding: 0px 9px 0px 0px;
+	list-style: none;
+	font: bold 10px/15px Tahoma, Verdana, Helvetica, sans-serif;
+}
+#tabs li{display: inline; margin: 0px; padding: 0px;}
+#tabs a{float: left; background: url('../images/layout/tableft.gif') no-repeat left top; margin: 0px; padding: 0px 0px 0px 4px; text-decoration: none; outline: none;}
+#tabs a span{float: left; display: block; background: url('../images/layout/tabright.gif') no-repeat right top; padding: 5px 15px 4px 6px; color: #000;}
+/* Commented Backslash Hack hides rule from IE5-Mac \*/
+#tabs a span{float:none;}
+/* End IE5-Mac hack */
+#tabs a:hover span{color: #92b74e;}
+#tabs a:hover{background-position: 0% -42px;}
+#tabs a:hover span{background-position: 100% -42px;}
+
+ul.itemmenu {list-style: none; padding: 10px 0px 20px 0px; text-align: right;}
+ul.itemmenu li{display: inline; margin: 0px 5px;}
+ul.itemmenu li a{color: #176372;}
+ul.itemmenu li a img{vertical-align: middle; margin-right: 3px;}
+ul.itemmenu li a:hover{text-decoration: none;}
+ul.itemmenu li span{display: inline;}
+
+dl.zend_form {
+	width: 740px;
+	margin: 10px 0 0 0;
+	padding: 0;
+}
+
+.zend_form dt {
+	width: 200px;
+	float: left;
+	margin: 1px 10px 1px 0;
+	text-align: right;
+	font-weight: bold;
+}
+
+.zend_form .tmce {
+	clear: both;
+}
+
+.zend_form .cbox {
+	width: auto;
+}
+
+.zend_form .submit {
+	clear: both;
+	text-align: right;
+	margin: 5px 0 0 0;
+}
+
+.zend_form input {border: 1px solid #ccc; width: 527px;}
+.zend_form .submit input {background: #c7cb16; border: 1px solid #c7cb16; color: #000; font-weight: bold; width: auto;}
+
+.zend_form textarea {
+	width: 735px;
+}
+
+/* commented backslash hack for mac-ie5 \*/
+dt { clear: both; }
+/* end hack */
+
+.zend_form dd {
+	float: left;
+	width: 440px;
+	margin: 1px 0 3px 0;
+}
+

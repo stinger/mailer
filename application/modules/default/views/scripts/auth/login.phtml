@@ -1,0 +1,24 @@
+<h1><span class="icon"><img src="<?php echo $this->baseUrl; ?>/public/images/layout/icons/login.png" alt="Post" /></span>Restricted resource<span class="describe">Please authenticate</span></h1>
+<ul id="tabs">
+	<!--<li><a href="<?php echo $this->url(array('controller'=>'index', 'action'=>'index'),'default'); ?>"><span><?php echo $this->img('/public/images/layout/actions/left.png')?> Back to home page</a></span></li>-->
+</ul>
+
+
+<?php
+	if (!empty($this->errors[0]))
+	{
+		echo '<div class="errorExplanation" id="errorExplanation">
+		<h2>The following errors have occured during the process</h2>
+		<p>Please, review and correct the following:</p>
+		<ul>';
+		foreach ($this->errors as $error)
+		{
+			echo '<li>'.$error.'</li>';
+		}
+		echo '</ul>
+		</div>';
+	}
+	
+	echo $this->form;
+?>
+	<div class="direction">Please, provide your username and password in order to authenticate.<br /><br />If you have forgotten your password - please, contact the <a href="mailto:ilian@athlondps.com">webmaster</a> for further assistance</div>
