@@ -1,0 +1,9 @@
+# Rewrite rules for Zend Framework
+RewriteEngine On
+
+# Only continue if requested URL is not a file on disk
+RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteCond %{SCRIPT_FILENAME} !-d
+
+# Reirect request to index.php
+RewriteRule ^(.*)$ index.php/$1
