@@ -1,1 +1,1 @@
- 
+Initial version of mailer is a basic implementation of a tool that can be used to send a HTML-formatted file as e-mail message to a list of recipients.
