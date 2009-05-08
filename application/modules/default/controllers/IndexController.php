@@ -14,6 +14,7 @@
 			
 			$this->view->assign('description', 'Organize your email testing');
 			$this->view->headTitle($this->view->title);
+			Zend_Loader::loadClass('Files');
 			$files = new Files();
 			$this->view->list = $files->listFiles('public/files/uploaded/');
 		}
@@ -98,6 +99,7 @@
 				case 'xml': $this->_helper->layout->setLayout('xml'); $this->_helper->viewRenderer('list-xml'); break;
 				default: $this->_helper->layout->setLayout('ajax');
 			}
+			Zend_Loader::loadClass('Files');
 			$files = new Files();
 			$this->view->list = $files->listFiles('public/files/uploaded/');
 			
