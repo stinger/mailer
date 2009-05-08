@@ -12,8 +12,9 @@
 	define('ROOT_DIR', $rootDir);
  	set_include_path($rootDir . '/library' . PATH_SEPARATOR . get_include_path());
 
-	require_once 'Zend/Loader.php';
-	Zend_Loader::registerAutoload();
+	require_once 'Zend/Loader/Autoloader.php';
+	$autoloader = Zend_Loader_Autoloader::getInstance();
+	$autoloader->registerNamespace('Mailer_')->registerNamespace('forms_');
 	
 // 	load configuration
 	$section = getenv('MAILER_CONFIG') ? getenv('MAILER_CONFIG') : 'live';
@@ -23,9 +24,9 @@
 
 // 	Setup controller
 	$frontController = Zend_Controller_Front::getInstance();
-	$frontController->registerPlugin(new ModelsPathPlugin());
-	$frontController->registerPlugin(new AjaxCheckPlugin());
-	$frontController->registerPlugin(new DBACLPlugin());
+	$frontController->registerPlugin(new Mailer_ModelsPathPlugin());
+	$frontController->registerPlugin(new Mailer_AjaxCheckPlugin());
+	$frontController->registerPlugin(new Mailer_DBACLPlugin());
 
 // 	Routes
 	$router = $frontController->getRouter();

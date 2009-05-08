@@ -12,20 +12,20 @@ class forms_UploadForm extends Zend_Form
 	$frontController = Zend_Controller_Front::getInstance();
 	$submitLabel =  $frontController->getBaseUrl().'/public/images/layout/buttons/upload.gif';
 
-	$uploader = new Zend_Form_Element_File('uploader');
+	$uploader = new Zend_Form_Element_File('uploader', array('disableLoadDefaultDecorators' => true));
 	$uploader->setLabel('Upload a file:')
 		->setName('uploader')
 		->setDestination(ROOT_DIR.'/public/files/uploaded')
 		->addValidator('Size', false, 102400)
-		->setDecorators(array('Composite'));
+		->setDecorators(array('File', array('HtmlTag',array('tag' => '<div>', 'style'=>'display: none;')), 'Composite'));
 
 	// ensure max 3 files are uploaded
- 	$uploader->addValidator('Count', false, array('min' => 1, 'max' => $this->max_allowed_file_uploads));
+ 	// $uploader->addValidator('Count', false, array('min' => 1, 'max' => $this->max_allowed_file_uploads));
 
 	// only JPEG, PNG, and GIFs
 	// $element->addValidator('Extension', false, 'jpg,png,gif');
 
- 	$uploader->setMultiFile(3);
+	// $uploader->setMultiFile(3);
 
 	$submit = $this->createElement('image','submit',array('src'=>$submitLabel, 'id'=>'uploadSubmit'));
 	$submit->setDecorators(array(array('ViewHelper'),array('Errors'),array('HtmlTag', array('tag' => 'div', 'class'=>'submit'))));
