@@ -172,7 +172,8 @@ p.description {margin: 0px; font: 12px/15px "Lucida Grande", "SegoeUI", Tahoma, 
 
 #browser{position: relative;}
 #browser #upload_form{position: absolute; top: 27px; left: 100px; width: 560px; background: #f9f9f9; color: #222; z-index: 100; max-width: 550px; opacity: 0.95; -moz-opacity: 0.95; padding: 0px; margin: 0px; border: 1px solid #eee; border-top: 0px;}
-#browser #upload_form div{padding: 10px 5px; }
+#browser #upload_form div {padding: 10px 5px;}
+
 #upload_form div .form_row{width: 300px; padding: 0px !important;}
 #upload_form div .form_row .label{float: left; width: 100px; padding: 2px 0px !important;}
 #upload_form div .form_row .field{float: left; width: 200px; height: 22px; padding: 0px !important;}

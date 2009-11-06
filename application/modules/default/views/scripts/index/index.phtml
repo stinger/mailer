@@ -4,7 +4,7 @@ $this->headScript()
 ->prependFile($this->baseURL.'public/javascripts/jquery.em.js')
 ->appendFile($this->baseURL.'public/javascripts/jScrollPane.js')
 ->prependFile($this->baseURL.'public/javascripts/jquery.filestyle.js')
-->prependFile($this->baseURL.'public/javascripts/ajaxfileupload.js')
+->prependFile($this->baseURL.'public/javascripts/ajaxupload.js')
 ->captureStart(); ?>
 var statusBarText = '';
 var selected = 0;
@@ -18,7 +18,28 @@ $(document).ready(function()
 	$('.scroll-pane').jScrollPane();
 	$("input[type=file]").filestyle({ image: '<?php echo $this->baseUrl ?>/public/images/layout/buttons/choose-file.gif', imageheight : 22, imagewidth : 82, width : 118 });
 
-	
+	var Ajaxuploader = new AjaxUpload("#uploader_filestyle",{
+			action: '<?php echo $this->url(array('controller'=>'index', 'action'=>'upload'),'default') ?>',
+			responseType: 'json',
+			autoSubmit: true,
+			data: {dataType: 'json'},
+			name: 'uploader',
+			onSubmit:  function(file, extension) {
+				$("#loading").show();
+			},
+			onComplete: function(file, response){
+				if (response.error != '') {
+					$.facebox(response.error)
+					$("#loading").hide();
+				}
+				else {
+					$("#loading").hide();
+					$('#upload_form').hide();
+					$.facebox(response.msg);
+					$(".header .reload").trigger('click');
+				}
+			}
+		});
 
 	$(".header .add").click(function()
 	{
@@ -68,47 +89,11 @@ $(document).ready(function()
 		$('.scroll-pane').jScrollPane();
 	});
 
-	function ajaxFileUpload()
-	{
-		$("#loading")
-		.ajaxStart(function(){
-			$(this).show();
-		})
-		.ajaxComplete(function(){
-			$(this).hide();
-		});
-
-		$.ajaxFileUpload({
-			url:'<?php echo $this->url(array('controller'=>'index', 'action'=>'upload'),'default') ?>',
-			secureuri: false,
-			fileElementId: 'uploader',
-			dataType: 'json',
-			success: function (data, status)
-			{
-				if(typeof(data.error) != 'undefined')
-				{
-					if(data.error != '')
-					{
-						$.facebox(data.error);
-					}
-					else
-					{
-						$('#upload_form').hide();
-						$(".header .reload").trigger('click');
-					}
-				}
-			},
-			error: function (data, status, e)
-			{
-				$.facebox(e);
-			}
-		});
-		return false;
-	}
 
 	$('#uploadSubmit').click(function(e){
 		e.preventDefault();
-		return new ajaxFileUpload();
+		console.log(Ajaxuploader);
+		Ajaxuploader.submit();
 	});
 
 	$('#uploadForm').submit(function(e){
@@ -211,7 +196,7 @@ function checkSelected()
 </ul>
 <div id="items">
 	<div id="browser">
-	<div id="upload_form" style="display: none;"><?php echo $this->uploadform; ?><a href="#" class="close">Close</a>
+	<div id="upload_form" style="display: none;"><a href="#" class="close">Close</a><div id="upload_form_contents"><?php echo $this->uploadform; ?></div>
 	<?php echo $this->img('/public/images/layout/loading.gif', array('alt' => 'loading', 'id'=>'loading' ,'style'=>'display: none;')); ?></div>
 	<div class="left_column">
 		<div id="tip"><div>Enter recipient's addresses one at a line<br /><a href="#" class="close">Close</a></div></div>

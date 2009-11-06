@@ -19,7 +19,6 @@ class Mailer_DBACLPlugin extends Zend_Controller_Plugin_Abstract
 
 		$acl = Mailer_ACL::getInstance();
 		$request = $this->getRequest();
-
 		if (!$acl->hasRole($userRoleId)) {
 			$error = "Sorry, the requested user role '".$userRoleId."' does not exist";
 		}

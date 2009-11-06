@@ -3,6 +3,14 @@ if ($this->dType == 'json')
 {
 	echo '{error: "'.$this->errors.'", msg: "'.$this->message.'"}';
 }
+else if($this->dType == 'html'){
+?>
+<h1><span class="icon"><?php echo $this->img('/public/images/layout/icons/mail.png', array('alt' => 'Mail')); ?></span><?php echo $this->escape('Upload File');?><span class="describe"><?php echo $this->errors; ?></span></h1>
+<div id="items">
+<p><?php echo $this->message; ?>
+</div>
+<?php
+}
 
 ?>
 

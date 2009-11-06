@@ -30,7 +30,6 @@
 				{
 					$this->_helper->layout->setLayout('json');
 				}
-
 				if ($form->isValid($_POST))
 				{
 					$adapter = new Zend_File_Transfer_Adapter_Http();
@@ -51,7 +50,7 @@
 						else
 						{
 							$redirector = $this->_helper->getHelper('Redirector');
-							setGotoSimple("action","controller");
+							//setGotoSimple("action","controller");
 							$redirector->setCode(303)->setExit(false)->setGotoSimple("index","index");
 							$redirector->redirectAndExit();
 						}
